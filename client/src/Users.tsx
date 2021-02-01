@@ -10,6 +10,11 @@ const USERS_QUERY = gql`
   }
 `;
 
+interface User {
+  id: string;
+  name: string;
+}
+
 export default function Users(): ReactElement {
   const { loading, error, data } = useQuery(USERS_QUERY);
 
@@ -18,7 +23,7 @@ export default function Users(): ReactElement {
 
   return (
     <div>
-      {data.users.map((user: any) => (
+      {data.users.map((user: User) => (
         <p key={user.id}>{user.name}</p>
       ))}
     </div>
